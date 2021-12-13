@@ -373,6 +373,10 @@ class SumoEnvironmentPZ(AECEnv, EzPickle):
         raise NotImplementedError('Method state() currently not implemented.')
 
     def close(self):
+        try:
+            self.disp.close()
+        except AttributeError:
+            pass
         self.env.close()
 
     def render(self, mode='human'):
